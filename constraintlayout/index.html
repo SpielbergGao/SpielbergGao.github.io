@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Kotlin 接口与 Java8 新特性接口, Spielberg Gao">
-    <meta name="description" content="在看一本关于高性能编程的时候发现 Java8 中关于接口的新特性的介绍，这个特性是真的棒，解决了一个接口中有多个方法，但并不想实现该接口的类都去实现所有的方法，简单的说就是在类需要的情况再去重写接口。所以有了以下的特性出现。
-接口增强在 J">
+    <meta name="keywords" content="ConstraintLayout 属性简介, Spielberg Gao">
+    <meta name="description" content="在日常开发中会遇到多种布局结构，导致 xml 层级嵌套过多，xml 又是 IO 操作，在 vSync 信号量通知界面绘制刷新时可能会造成卡顿当然原因会有多种，这里做一个例子。
+使用 ConstraintLayout 可以有效的避免层级嵌套过">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Kotlin 接口与 Java8 新特性接口 | Spielberg Gao</title>
+    <title>ConstraintLayout 属性简介 | Spielberg Gao</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,7 +310,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Kotlin 接口与 Java8 新特性接口</h1>
+                    <h1 class="description center-align post-title">ConstraintLayout 属性简介</h1>
                 </div>
             </div>
         </div>
@@ -439,7 +439,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-06-07
+                    2020-02-21
                 </div>
                 
 
@@ -456,97 +456,81 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>在看一本关于高性能编程的时候发现 Java8 中关于接口的新特性的介绍，这个特性是真的棒，解决了一个接口中有多个方法，但并不想实现该接口的类都去实现所有的方法，简单的说就是在类需要的情况再去重写接口。所以有了以下的特性出现。</p>
-<h2 id="接口增强"><a href="#接口增强" class="headerlink" title="接口增强"></a>接口增强</h2><p>在 Java8 的中接口特性中增加以下俩种特性:</p>
+                <p>在日常开发中会遇到多种布局结构，导致 xml 层级嵌套过多，xml 又是 IO 操作，在 vSync 信号量通知界面绘制刷新时可能会造成卡顿当然原因会有多种，这里做一个例子。</p>
+<p>使用 ConstraintLayout 可以有效的避免层级嵌套过深问题，日常开发中一个层级就可以搞定之前多层级嵌套的布局。它的众多属性非常的灵活简单易用。</p>
+<h2 id="相对定位"><a href="#相对定位" class="headerlink" title="相对定位"></a>相对定位</h2><p>相对定位属性的特点是 constraint 后边的方向是指当前控件的位置，下划线后的方向是指定控件的位置。</p>
 <ul>
-<li><p>在接口中可以使用 default 关键字修饰默认方法或扩展方法，抽象方法因为其特性的原因无法使用</p>
-</li>
-<li><p>接口可以使用 static 声明为静态方法，可以通过类直接调用</p>
-<p>   Android Studio 中使用 Java8 需要在模块中的 build.gradle 中配置指定的版 Java 版本，当然使用 Kotlin 为开发语言的话需要为 Kotlin 指定 Jvm 版本，因为 Kotlin 使用的是 Jvm 1.6 那么下面就来展示他们的配置方法：</p>
-<pre class=" language-groovy"><code class="language-groovy">        android <span class="token punctuation">{</span>
-            defaultConfig <span class="token punctuation">{</span>
-                <span class="token punctuation">...</span> 
-                 kotlinOptions <span class="token punctuation">{</span>
-                    jvmTarget <span class="token operator">=</span> <span class="token string">'1.8'</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-            compileOptions <span class="token punctuation">{</span>
-                sourceCompatibility JavaVersion<span class="token operator">.</span>VERSION_1_8
-                targetCompatibility JavaVersion<span class="token operator">.</span>VERSION_1_8
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span></code></pre>
-<p>   经过以上的配置就可以使用 Java8 的新特性了</p>
-</li>
+<li>layout_constraintLeft_toLeftOf</li>
+<li>layout_constraintLeft_toRightOf</li>
+<li>layout_constraintRight_toLeftOf</li>
+<li>layout_constraintRight_toRightOf</li>
+<li>layout_constraintTop_toTopOf</li>
+<li>layout_constraintTop_toBottomOf</li>
+<li>layout_constraintBottom_toTopOf</li>
+<li>layout_constraintBottom_toBottomOf</li>
+<li>layout_constraintBaseline_toBaselineOf</li>
+<li>layout_constraintStart_toEndOf</li>
+<li>layout_constraintStart_toStartOf</li>
+<li>layout_constraintEnd_toStartOf</li>
+<li>layout_constraintEnd_toEndOf</li>
 </ul>
-<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例:"></a>代码示例:</h3><pre class=" language-java"><code class="language-java">    puclic <span class="token keyword">interface</span> <span class="token class-name">onTest</span><span class="token punctuation">{</span>
-
-         <span class="token keyword">void</span> <span class="token function">onTestStandardMenthod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">default</span> <span class="token keyword">void</span> <span class="token function">onTestDefaultMethond</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">// 默认的逻辑</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">onTestStaticMenthod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">// 默认的逻辑</span>
-        <span class="token punctuation">}</span>
-
-    <span class="token punctuation">}</span>
-
-     <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestActivity</span> <span class="token keyword">extends</span> <span class="token class-name">AppCompatActivity</span> <span class="token keyword">implements</span> <span class="token class-name">onTest</span><span class="token punctuation">{</span>
-
-       <span class="token annotation punctuation">@Override</span>
-       <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onCreate</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Nullable</span> Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-          <span class="token comment" spellcheck="true">// 通过类名调用的接口</span>
-        onTest<span class="token punctuation">.</span><span class="token function">onTestStaticMenthod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-
-        <span class="token comment" spellcheck="true">// 通过对象的形式调用 代码只用来举例说明</span>
-        <span class="token keyword">new</span> <span class="token class-name">TestActivity<span class="token punctuation">.</span>onTestStandardMenthod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
-        <span class="token keyword">new</span> <span class="token class-name">TestActivity<span class="token punctuation">.</span>onTestDefaultMethond</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-      <span class="token punctuation">}</span>
-
-      <span class="token annotation punctuation">@Override</span>
-      <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onTestStandardMenthod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment" spellcheck="true">// 必须实现</span>
-
-      <span class="token annotation punctuation">@Override</span>
-      <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onTestDefaultMethond</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment" spellcheck="true">// 可以选择性实现</span>
-
-    <span class="token punctuation">}</span></code></pre>
-<p>上面的代码是展示如何使用，如果对具体的细节想了解的更清楚可以查看官方的<a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html" target="_blank" rel="noopener">文档</a></p>
-<p>可能有朋友好奇我为什么先讲 Java，因为 Kotlin 的语法结构和关键字是不一样的虽然实现的思路是一样的，所以先从 Java 开始，另外是近年 Jvm 版本升级很快，基础概念不会改变，但有新的特性是正常的，如果有常看文档的朋友会发现有些方法实现的方式和细节也会发生改变。</p>
-<p>接下来开始 Kotlin 的部分，这部分看起来与 Java 8 相似，但实际上并没有使用 Java 8 的特性，但为了好理解一些可以写成类似的思路。</p>
-<pre class=" language-Kotlin"><code class="language-Kotlin">    internal interface onTest {
-        fun onTestStandardMenthod()
-        fun onTestDefaultMethond() {
-            // 默认的逻辑
-        }
-        companion object { 
-            fun onTestStaticMenthod() {
-                // 默认的逻辑 
-            }
-        }
-    }
-
-    class TestActivity  :  AppCompatActivity , onTest{
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-              // 通过类名调用的接口
-            onTest.onTestStaticMenthod()
-            // 通过对象的形式调用 代码只用来举例说明
-            TestActivity.onTestStandardMenthod() 
-            TestActivity.onTestDefaultMethond()
-        }
-        // 必须实现
-        override fun onTestStandardMenthod(){} 
-        // 可以选择性实现
-        override fun onTestDefaultMethond(){ super.onTestDefaultMethond()}
-    }</code></pre>
-<p>Kotlin 的接口与 Java 8 类似，既包含抽象方法的声明，也包含实现。与抽象类不同的是，接口无法保存状态。它可以有属性但必须声明为抽象或提供访问器实现，如果对 Kotlin 的接口不明白的的话可以点这里<a href="https://www.kotlincn.net/docs/reference/interfaces.html" target="_blank" rel="noopener">查看更详细的说明</a>。</p>
-<p>Kotlin 的接口可以选择是否有方法体，对比之下的话 Java8 需要声明 default 后可以有方法体，静态接口的方法其实在实现概念上是一样的，或许说目前的面向对象万变不离其中吧。</p>
-<p>对于 Java8 这让我想到了之前朋友的吐槽 “苹果总是做一些以前就有的功能，然后开发布会来夸大其词，很厉害的样子” 我觉得 Java 就是这样子的，一些本应该随着时代来不断完善的语法或者新的优化，早应该就出了，结果非得在外界的冲击下，才做出改变。看更新的速度，很明显这并不是非常困难的事，这也就诞生了新的语言，世间常态总是如此当现有的工具诟病太多后，就会诞生新的工具，当然 Java 是必不可少的一环。</p>
+<pre class=" language-xml"><code class="language-xml">    <span class="token comment" spellcheck="true">&lt;!-- buttonB 设置了约束属性将自己的左边设置在 buttonA 的右边  --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/buttonA<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> 
+        <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/buttonB<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">app:</span>layout_constraintLeft_toRightOf</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/buttonA<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
+<h2 id="边距"><a href="#边距" class="headerlink" title="边距"></a>边距</h2><ul>
+<li>android:layout_marginStart</li>
+<li>android:layout_marginEnd</li>
+<li>android:layout_marginLeft</li>
+<li>android:layout_marginTop</li>
+<li>android:layout_marginRight</li>
+<li>android:layout_marginBottom</li>
+</ul>
+<p>上面的属性是常规设置边距，使用方法和 LinearLayout 及 RelateLayout 无异，下面的属性就比较有趣了，在布局中会用到 <code>GONE</code>，当使用这个属性后有一个问题当该控件再次显示的时候会触发绘制，就会有一个屏幕跳动的问题，当使用一下属性时可以设置在 <code>GONE</code> 状态下与指定目标的位置，在显示的时候可以避免这种问题。</p>
+<ul>
+<li>layout_goneMarginStart</li>
+<li>layout_goneMarginEnd</li>
+<li>layout_goneMarginLeft</li>
+<li>layout_goneMarginTop</li>
+<li>layout_goneMarginRight</li>
+<li>layout_goneMarginBottom</li>
+</ul>
+<h2 id="居中定位"><a href="#居中定位" class="headerlink" title="居中定位"></a>居中定位</h2><p>这俩个属性可以更改属性偏移位置，视图同时设置 <code>layout_constraintStart_toStartOf</code> 及 <code>layout_constraintEnd_toEndOf</code> 会默认为居中也就是 50%，通过以下俩个属性可以更改居中的位置。</p>
+<ul>
+<li>layout_constraintHorizontal_bias</li>
+<li>layout_constraintVertical_bias</li>
+</ul>
+<h2 id="圆形定位"><a href="#圆形定位" class="headerlink" title="圆形定位"></a>圆形定位</h2><ul>
+<li>layout_constraintCircle : 引用另一个小部件ID</li>
+<li>layout_constraintCircleRadius : 到另一个小部件中心的距离</li>
+<li>layout_constraintCircleAngle : 小部件应处于的角度（以度为单位，从0到360）</li>
+</ul>
+<pre class=" language-xml"><code class="language-xml">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/buttonA<span class="token punctuation">"</span></span> <span class="token attr-name">...</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> 
+        <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/buttonB<span class="token punctuation">"</span></span> <span class="token attr-name">...</span>
+        <span class="token attr-name"><span class="token namespace">app:</span>layout_constraintCircle</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/buttonA<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">app:</span>layout_constraintCircleRadius</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100dp<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">app:</span>layout_constraintCircleAngle</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>45<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
+<h2 id="尺寸限制"><a href="#尺寸限制" class="headerlink" title="尺寸限制"></a>尺寸限制</h2><h3 id="MATCH-CONSTRAINT尺寸"><a href="#MATCH-CONSTRAINT尺寸" class="headerlink" title="MATCH_CONSTRAINT尺寸"></a>MATCH_CONSTRAINT尺寸</h3><p>当尺寸设置为时 MATCH_CONSTRAINT，默认行为是使结果尺寸占用所有可用空间。可以使用其他几个修饰符：</p>
+<ul>
+<li>layout_constraintWidth_min和layout_constraintHeight_min：将为此尺寸设置最小尺寸</li>
+<li>layout_constraintWidth_max和layout_constraintHeight_max：将为此尺寸设置最大尺寸</li>
+<li>layout_constraintWidth_percent和layout_constraintHeight_percent：将此尺寸的尺寸设置为父尺寸的百分比</li>
+</ul>
+<h3 id="最小与最大"><a href="#最小与最大" class="headerlink" title="最小与最大"></a>最小与最大</h3><ul>
+<li>尺寸应设置为 MATCH_CONSTRAINT（0dp）</li>
+<li>默认值应设置为百分比app:layout_constraintWidth_default=”percent” 或 app:layout_constraintHeight_default=”percent”</li>
+<li>然后将 layout_constraintWidth_percent 或 layout_constraintHeight_percent 属性设置为介于 0 和 1 之间的值<br>比</li>
+</ul>
+<pre class=" language-xml"><code class="language-xml">    <span class="token comment" spellcheck="true">&lt;!--浮点值，表示宽度和高度之间的比率形式为“宽度：高度”的比率 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> 
+        <span class="token attr-name"><span class="token namespace">android:</span>layout_width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrap_content<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">android:</span>layout_height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0dp<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">app:</span>layout_constraintDimensionRatio</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1:1<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
+<p>以上内容是摘录至文档部分内容。在使用中如果以某一个控件为位置主导，那该控件要设置四个约束属性，不然为设置的那个属性会出现变形或移位的问题，当控件 A 底部设置在 控件 B 顶部时，那么控件 B 也要设置顶部到控件 A 的底部，开环与闭环原则。</p>
+<p>match 这个可以用 <code>0dp</code> 代替并设置控件的约束位置，如果使用 match 会有超出可见范围的问题。</p>
+<p>有另一种更简单的方法设置就是使用 Android Studio 的 <code>Design</code> 模式可以通过点击的方式进行设置各种属性的大概位置，精确的位置需要手动调整。</p>
 
             </div>
             <hr/>
@@ -572,7 +556,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://spielberggao.com/kotlin-java8/">http://spielberggao.com/kotlin-java8/</a>
+                    <a href="http://spielberggao.com/constraintlayout/">http://spielberggao.com/constraintlayout/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -773,9 +757,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/constraintlayout/">
                     <div class="card-image">
@@ -794,9 +779,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -805,6 +790,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -812,7 +798,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/kotlin-java8/">
@@ -843,7 +829,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
