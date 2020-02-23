@@ -528,7 +528,7 @@
         <span class="token attr-name"><span class="token namespace">android:</span>layout_width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrap_content<span class="token punctuation">"</span></span>
         <span class="token attr-name"><span class="token namespace">android:</span>layout_height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0dp<span class="token punctuation">"</span></span>
         <span class="token attr-name"><span class="token namespace">app:</span>layout_constraintDimensionRatio</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1:1<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
-<p>以上内容是摘录至文档部分内容。在使用中如果以某一个控件为位置主导，那该控件要设置四个约束属性，不然为设置的那个属性会出现变形或移位的问题，当控件 A 底部设置在 控件 B 顶部时，那么控件 B 也要设置顶部到控件 A 的底部，开环与闭环原则。</p>
+<p>以上内容是摘录至文档部分内容。在使用中如果以某一个控件为位置主导，那该控件要设置四个约束属性，不然未设置的那个属性会出现变形或移位的问题，当控件 A 底部设置在 控件 B 顶部时，那么控件 B 也要设置顶部到控件 A 的底部，开环与闭环原则。</p>
 <p>match 这个可以用 <code>0dp</code> 代替并设置控件的约束位置，如果使用 match 会有超出可见范围的问题。</p>
 <p>有另一种更简单的方法设置就是使用 Android Studio 的 <code>Design</code> 模式可以通过点击的方式进行设置各种属性的大概位置，精确的位置需要手动调整。</p>
 
