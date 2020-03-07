@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://spielberggao.com/"/>
-  <updated>2020-02-23T06:11:09.098Z</updated>
+  <updated>2020-03-07T11:02:31.165Z</updated>
   <id>http://spielberggao.com/</id>
   
   <author>
@@ -15,6 +15,47 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java 范型与 Kotlin 范型</title>
+    <link href="http://spielberggao.com/java-fan-xing-yu-kotlin-fan-xing/"/>
+    <id>http://spielberggao.com/java-fan-xing-yu-kotlin-fan-xing/</id>
+    <published>2020-03-07T11:02:31.000Z</published>
+    <updated>2020-03-07T11:02:31.165Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>创业团队经历与总结</title>
+    <link href="http://spielberggao.com/ge-ren-zong-jie/"/>
+    <id>http://spielberggao.com/ge-ren-zong-jie/</id>
+    <published>2020-03-07T08:24:44.000Z</published>
+    <updated>2020-03-07T08:58:32.552Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在这里我总结一下工作中与生活中遇到的事情。&lt;/p&gt;
+&lt;p&gt;在2019年7月入职一家创业团队，在入职前已经做好最累的打算实际上我做的打算与遇到的差距还不小。工作是 996
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="总结" scheme="http://spielberggao.com/tags/%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>ConstraintLayout 属性简介</title>
