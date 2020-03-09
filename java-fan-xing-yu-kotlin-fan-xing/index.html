@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Java 范型与 Kotlin 范型, Spielberg Gao">
-    <meta name="description" content="Java 范型与 Kotlin 范型 | Spielberg Gao">
+    <meta name="description" content="Java 泛型就是把一种语法糖，通过泛型使得在编译阶段完成一些类型转换的工作，避免在运行时强制类型转换而出现ClassCastException，即类型转换异常。Java中最常用的语法糖主要有泛型、变长参数、条件编译、自动拆装箱、内部类等。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -26,8 +26,8 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Spielberg Gao" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Spielberg Gao" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -424,9 +424,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Kotlin-%E4%B8%8E-Java/">
+                                <span class="chip bg-color">Kotlin 与 Java</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -455,7 +459,23 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p>Java 泛型就是把一种语法糖，通过泛型使得在编译阶段完成一些类型转换的工作，避免在运行时强制类型转换而出现ClassCastException，即类型转换异常。<br>Java中最常用的语法糖主要有泛型、变长参数、条件编译、自动拆装箱、内部类等。虚拟机并不支持这些语法，它们在编译阶段就被还原回了简单的基础语法结构，这个过程成为解语法糖。</p>
+<h3 id="范型的好处"><a href="#范型的好处" class="headerlink" title="范型的好处"></a>范型的好处</h3><ol>
+<li>类型安全。类型错误现在在编译期间就被捕获到了，而不是在运行时当作java.lang.ClassCastException展示出来，将类型检查从运行时挪到编译时有助于开发者更容易找到错误，并提高程序的可靠性。</li>
+<li>消除了代码中许多的强制类型转换，增强了代码的可读性。</li>
+<li>为较大的优化带来了可能。优化了程序设计，解决了黄色警告线。</li>
+</ol>
+<p>关于范型需要了解<a href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E5%8F%98%E4%B8%8E%E9%80%86%E5%8F%98" target="_blank" rel="noopener">逆变与协变</a>，因为涉及到上下变型关系不了解的话容易绕晕。<br>翻译在解决了类型转换的问题后，发先了继承关系中类型不一致的问题。逆变与协变就是为了解决这种问题，平时开发中也会经常用到。<br>我们在基础的架构时会对数据进行封装或者根据逻辑的层级结构进行封装都会用到。不要害怕。</p>
+<pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">// Java 协变写法</span>
+    <span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">E</span><span class="token operator">></span> 
+    <span class="token comment" spellcheck="true">// Java 逆变写法</span>
+    <span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> E<span class="token operator">></span></code></pre>
+<pre class=" language-kotlin"><code class="language-kotlin">    <span class="token comment" spellcheck="true">// Kotlin 协变写法</span>
+    <span class="token operator">&lt;</span><span class="token keyword">out</span> E<span class="token operator">></span>
+    <span class="token comment" spellcheck="true">// Kotlin 逆变写法</span>
+    <span class="token operator">&lt;</span><span class="token keyword">in</span> E<span class="token operator">></span></code></pre>
+<p>直观的从写法来看差异不大，但在 Kotlin 中对于协变的类型是不允许范型参数部分被改变，例如 <code>MutableCollection</code> 是不变的，<br><code>Collection</code> 是协变的，</p>
+
             </div>
             <hr/>
 
@@ -517,7 +537,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/Kotlin-%E4%B8%8E-Java/">
+                                    <span class="chip bg-color">Kotlin 与 Java</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -698,7 +722,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Java 泛型就是把一种语法糖，通过泛型使得在编译阶段完成一些类型转换的工作，避免在运行时强制类型转换而出现ClassCastException，即类型转换异常。Java中最常用的语法糖主要有泛型、变长参数、条件编译、自动拆装箱、内部类等。
                         
                     </div>
                     <div class="publish-info">
@@ -714,6 +738,14 @@
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Kotlin-%E4%B8%8E-Java/">
+                        <span class="chip bg-color">Kotlin 与 Java</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>

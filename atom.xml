@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://spielberggao.com/"/>
-  <updated>2020-03-07T11:02:31.165Z</updated>
+  <updated>2020-03-08T07:43:15.332Z</updated>
   <id>http://spielberggao.com/</id>
   
   <author>
@@ -21,13 +21,23 @@
     <link href="http://spielberggao.com/java-fan-xing-yu-kotlin-fan-xing/"/>
     <id>http://spielberggao.com/java-fan-xing-yu-kotlin-fan-xing/</id>
     <published>2020-03-07T11:02:31.000Z</published>
-    <updated>2020-03-07T11:02:31.165Z</updated>
+    <updated>2020-03-08T07:43:15.332Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Java
+        
+      
     
     </summary>
     
     
+    
+      <category term="Kotlin 与 Java" scheme="http://spielberggao.com/tags/Kotlin-%E4%B8%8E-Java/"/>
     
   </entry>
   
@@ -62,7 +72,7 @@
     <link href="http://spielberggao.com/constraintlayout/"/>
     <id>http://spielberggao.com/constraintlayout/</id>
     <published>2020-02-21T14:45:14.000Z</published>
-    <updated>2020-02-23T06:11:09.098Z</updated>
+    <updated>2020-03-07T12:57:34.984Z</updated>
     
     <summary type="html">
     
@@ -79,6 +89,8 @@
     
     
     
+      <category term="布局" scheme="http://spielberggao.com/tags/%E5%B8%83%E5%B1%80/"/>
+    
   </entry>
   
   <entry>
@@ -86,7 +98,7 @@
     <link href="http://spielberggao.com/kotlin-java8/"/>
     <id>http://spielberggao.com/kotlin-java8/</id>
     <published>2019-06-07T04:33:39.000Z</published>
-    <updated>2020-02-07T04:40:42.872Z</updated>
+    <updated>2020-03-07T12:57:34.996Z</updated>
     
     <summary type="html">
     
@@ -102,6 +114,8 @@
     </summary>
     
     
+    
+      <category term="Kotlin 与 Java" scheme="http://spielberggao.com/tags/Kotlin-%E4%B8%8E-Java/"/>
     
   </entry>
   
