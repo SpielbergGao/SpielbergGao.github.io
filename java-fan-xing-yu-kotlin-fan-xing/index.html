@@ -26,8 +26,8 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Spielberg Gao" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Spielberg Gao" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -466,15 +466,27 @@
 <li>为较大的优化带来了可能。优化了程序设计，解决了黄色警告线。</li>
 </ol>
 <p>关于范型需要了解<a href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E5%8F%98%E4%B8%8E%E9%80%86%E5%8F%98" target="_blank" rel="noopener">逆变与协变</a>，因为涉及到上下变型关系不了解的话容易绕晕。<br>翻译在解决了类型转换的问题后，发先了继承关系中类型不一致的问题。逆变与协变就是为了解决这种问题，平时开发中也会经常用到。<br>我们在基础的架构时会对数据进行封装或者根据逻辑的层级结构进行封装都会用到。不要害怕。</p>
-<pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">// Java 协变写法</span>
-    <span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">E</span><span class="token operator">></span> 
+<pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">// Java 协变写法 strong</span>
+    List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Number</span><span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// Java 逆变写法</span>
-    <span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> E<span class="token operator">></span></code></pre>
+    List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> Integer<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Number<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <pre class=" language-kotlin"><code class="language-kotlin">    <span class="token comment" spellcheck="true">// Kotlin 协变写法</span>
-    <span class="token operator">&lt;</span><span class="token keyword">out</span> E<span class="token operator">></span>
+    <span class="token keyword">val</span> list<span class="token operator">:</span> MutableList<span class="token operator">&lt;</span><span class="token keyword">out</span> Number<span class="token operator">></span> <span class="token operator">=</span> arrayListOf<span class="token operator">&lt;</span>Int<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token comment" spellcheck="true">// Kotlin 逆变写法</span>
-    <span class="token operator">&lt;</span><span class="token keyword">in</span> E<span class="token operator">></span></code></pre>
-<p>直观的从写法来看差异不大，但在 Kotlin 中对于协变的类型是不允许范型参数部分被改变，例如 <code>MutableCollection</code> 是不变的，<br><code>Collection</code> 是协变的，</p>
+    <span class="token keyword">val</span> list<span class="token operator">:</span> MutableList<span class="token operator">&lt;</span><span class="token keyword">in</span> Int<span class="token operator">></span> <span class="token operator">=</span> arrayListOf<span class="token operator">&lt;</span>Number<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>型变（协变和逆变）涉及到集合元素，集合类。协变讲的是两个集合的元素是子类关系，这两个集合也是子类关系，有了子类关系，就可以用多态表示。逆变的关系是反过来的，逆变说得是，两个集合的元素是父类关系，这两个集合却能成为子类关系。</p>
+<h3 id="Kotlin-投影与-Java-通配符-？-差异"><a href="#Kotlin-投影与-Java-通配符-？-差异" class="headerlink" title="Kotlin * 投影与 Java 通配符 ？ 差异"></a>Kotlin * 投影与 Java 通配符 ？ 差异</h3><pre class=" language-kotlin"><code class="language-kotlin">    <span class="token comment" spellcheck="true">// kotlin * 投影</span>
+    <span class="token keyword">val</span> clazz<span class="token operator">:</span>Class<span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">></span> <span class="token operator">=</span> List<span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">.</span>java</code></pre>
+<pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">// Java ? 通配符</span>
+    Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> clazz <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>摘录一段 Kotlin 官方对 <code>*</code> 说明:</p>
+<ul>
+<li>对于 <code>Foo &lt;out T&gt;</code>，其中 T 是一个具有上界 TUpper 的协变类型参数，<code>Foo &lt;*&gt;</code> 等价于 <code>Foo &lt;out TUpper&gt;</code>。 这意味着当 T 未知时，你可以安全地从 <code>Foo &lt;*&gt;</code> 读取 TUpper 的值。</li>
+<li>对于 <code>Foo &lt;in T&gt;</code>，其中 T 是一个逆变类型参数，<code>Foo &lt;*&gt;</code> 等价于 <code>Foo &lt;in Nothing&gt;</code>。 这意味着当 T 未知时，没有什么可以以安全的方式写入 <code>Foo &lt;*&gt;</code>。</li>
+<li>对于 <code>Foo &lt;T&gt;</code>，其中 T 是一个具有上界 TUpper 的不型变类型参数，<code>Foo&lt;*&gt;</code> 对于读取值时等价于 <code>Foo&lt;out TUpper&gt;</code> 而对于写值时等价于 <code>Foo&lt;in Nothing&gt;</code>。</li>
+</ul>
+<p><code>*</code> 投影不适用与函数及变量的类型范型参数，不能作为弗雷多额范型参数传入。</p>
+<p>待补充。。。</p>
 
             </div>
             <hr/>
