@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Java 范型与 Kotlin 范型, Spielberg Gao">
-    <meta name="description" content="Java 泛型就是把一种语法糖，通过泛型使得在编译阶段完成一些类型转换的工作，避免在运行时强制类型转换而出现ClassCastException，即类型转换异常。Java中最常用的语法糖主要有泛型、变长参数、条件编译、自动拆装箱、内部类等。">
+    <meta name="keywords" content="Handler, Spielberg Gao">
+    <meta name="description" content="HandlerHandler 用于跨线程通信，当子线程中进行耗时操作后需要更新 UI 时，通过 Handler 将有关 UI 的操作切换到主线程中执行。Handler 主要有俩个用途首先是可以用来定时处理或者分发消息，其次可以在其他线程中添">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Java 范型与 Kotlin 范型 | Spielberg Gao</title>
+    <title>Handler | Spielberg Gao</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -304,12 +304,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Java 范型与 Kotlin 范型</h1>
+                    <h1 class="description center-align post-title">Handler</h1>
                 </div>
             </div>
         </div>
@@ -426,8 +426,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Kotlin-%E4%B8%8E-Java/">
-                                <span class="chip bg-color">Kotlin 与 Java</span>
+                            <a href="/tags/Android-%E5%9F%BA%E7%A1%80/">
+                                <span class="chip bg-color">Android 基础</span>
                             </a>
                         
                     </div>
@@ -442,7 +442,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-07
+                    2020-03-13
                 </div>
                 
 
@@ -459,33 +459,21 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Java 泛型就是把一种语法糖，通过泛型使得在编译阶段完成一些类型转换的工作，避免在运行时强制类型转换而出现ClassCastException，即类型转换异常。<br>Java中最常用的语法糖主要有泛型、变长参数、条件编译、自动拆装箱、内部类等。虚拟机并不支持这些语法，它们在编译阶段就被还原回了简单的基础语法结构，这个过程成为解语法糖。</p>
-<h3 id="范型的好处"><a href="#范型的好处" class="headerlink" title="范型的好处"></a>范型的好处</h3><ol>
-<li>类型安全。类型错误现在在编译期间就被捕获到了，而不是在运行时当作java.lang.ClassCastException展示出来，将类型检查从运行时挪到编译时有助于开发者更容易找到错误，并提高程序的可靠性。</li>
-<li>消除了代码中许多的强制类型转换，增强了代码的可读性。</li>
-<li>为较大的优化带来了可能。优化了程序设计，解决了黄色警告线。</li>
-</ol>
-<p>关于范型需要了解<a href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E5%8F%98%E4%B8%8E%E9%80%86%E5%8F%98" target="_blank" rel="noopener">逆变与协变</a>，因为涉及到上下变型关系不了解的话容易绕晕。<br>翻译在解决了类型转换的问题后，发先了继承关系中类型不一致的问题。逆变与协变就是为了解决这种问题，平时开发中也会经常用到。<br>我们在基础的架构时会对数据进行封装或者根据逻辑的层级结构进行封装都会用到。不要害怕。</p>
-<pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">// Java 协变写法 strong</span>
-    List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Number</span><span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// Java 逆变写法</span>
-    List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> Integer<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Number<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<pre class=" language-kotlin"><code class="language-kotlin">    <span class="token comment" spellcheck="true">// Kotlin 协变写法</span>
-    <span class="token keyword">val</span> list<span class="token operator">:</span> MutableList<span class="token operator">&lt;</span><span class="token keyword">out</span> Number<span class="token operator">></span> <span class="token operator">=</span> arrayListOf<span class="token operator">&lt;</span>Int<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">// Kotlin 逆变写法</span>
-    <span class="token keyword">val</span> list<span class="token operator">:</span> MutableList<span class="token operator">&lt;</span><span class="token keyword">in</span> Int<span class="token operator">></span> <span class="token operator">=</span> arrayListOf<span class="token operator">&lt;</span>Number<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
-<p>型变（协变和逆变）涉及到集合元素，集合类。协变讲的是两个集合的元素是子类关系，这两个集合也是子类关系，有了子类关系，就可以用多态表示。逆变的关系是反过来的，逆变说得是，两个集合的元素是父类关系，这两个集合却能成为子类关系。</p>
-<h3 id="Kotlin-投影与-Java-通配符-？-差异"><a href="#Kotlin-投影与-Java-通配符-？-差异" class="headerlink" title="Kotlin * 投影与 Java 通配符 ？ 差异"></a>Kotlin * 投影与 Java 通配符 ？ 差异</h3><pre class=" language-kotlin"><code class="language-kotlin">    <span class="token comment" spellcheck="true">// kotlin * 投影</span>
-    <span class="token keyword">val</span> clazz<span class="token operator">:</span>Class<span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">></span> <span class="token operator">=</span> List<span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">.</span>java</code></pre>
-<pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">// Java ? 通配符</span>
-    Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> clazz <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>摘录一段 Kotlin 官方对 <code>*</code> 说明:</p>
-<ul>
-<li>对于 <code>Foo &lt;out T&gt;</code>，其中 T 是一个具有上界 TUpper 的协变类型参数，<code>Foo &lt;*&gt;</code> 等价于 <code>Foo &lt;out TUpper&gt;</code>。 这意味着当 T 未知时，你可以安全地从 <code>Foo &lt;*&gt;</code> 读取 TUpper 的值。</li>
-<li>对于 <code>Foo &lt;in T&gt;</code>，其中 T 是一个逆变类型参数，<code>Foo &lt;*&gt;</code> 等价于 <code>Foo &lt;in Nothing&gt;</code>。 这意味着当 T 未知时，没有什么可以以安全的方式写入 <code>Foo &lt;*&gt;</code>。</li>
-<li>对于 <code>Foo &lt;T&gt;</code>，其中 T 是一个具有上界 TUpper 的不型变类型参数，<code>Foo&lt;*&gt;</code> 对于读取值时等价于 <code>Foo&lt;out TUpper&gt;</code> 而对于写值时等价于 <code>Foo&lt;in Nothing&gt;</code>。</li>
+                <h2 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h2><p><code>Handler</code> 用于跨线程通信，当子线程中进行耗时操作后需要更新 UI 时，通过 <code>Handler</code> 将有关 UI 的操作切换到主线程中执行。<br><code>Handler</code> 主要有俩个用途首先是可以用来定时处理或者分发消息，其次可以在其他线程中添加操作。</p>
+<h3 id="必要条件"><a href="#必要条件" class="headerlink" title="必要条件:"></a>必要条件:</h3><ul>
+<li>Message（消息）：需要被传递的消息其中包含了消息 ID，消息处理对象以及处理的数据等，由 <code>MessageQueue</code> 存储，最终由 <code>Handler</code> 处理。</li>
+<li>MessageQueue（消息队列）：将 <code>Handler</code> 发送过来的消息存入一个消息队列中来依次执行，内部通过单链表的数据结构来维护消息列表。</li>
+<li>Handler（处理者）：负责 <code>Message</code> 的发送及处理。通过 <code>Handler.sendMessage()</code> 向消息池发送各种消息事件,通过 <code>Handler.handleMessage()</code> 处理相应的消息事件。</li>
+<li>Looper（消息泵）：通过 <code>Looper.loop()</code> 不断地从 <code>MessageQueue</code> 中抽取 <code>Message</code>，按分发机制将消息分发给目标处理者。<code>Looper</code> 不断从 <code>MessageQueue</code> 中获取消息并将之传递给消息处理者（即是消息发送者 <code>Handler</code> 本身）进行处理。</li>
 </ul>
-<p><code>*</code> 投影不适用与函数及变量的类型范型参数，不能作为弗雷多额范型参数传入。</p>
+<h3 id="具体流程"><a href="#具体流程" class="headerlink" title="具体流程"></a>具体流程</h3><ul>
+<li><code>Handler.sendMessage()</code> 发送消息时，会通过 <code>MessageQueue.enqueueMessage()</code> 向 <code>MessageQueue</code> 中添加一条消息。</li>
+<li>通过 <code>Looper.loop()</code> 开启循环后，不断轮询调用 <code>MessageQueue.next()</code>；</li>
+<li>调用目标 <code>Handler.dispatchMessage()</code> 去传递消息，目标 <code>Handler</code> 收到消息后调用 <code>Handler.handlerMessage()</code> 处理消息。</li>
+</ul>
+<h3 id="MessageQueue"><a href="#MessageQueue" class="headerlink" title="MessageQueue"></a>MessageQueue</h3><p><code>MessageQueue</code> 用来执行插入与读取的操作，使用 <code>enqueueMessage()</code> 往消息队列中插入一条消息， <code>next()</code> 的作用是从消息队列中取出一条消息并将其从消息队列中移除。其内部是使用一个单链表的数据结构来维护消息列表，单链表在插入和删除上比较有优势。</p>
+<h3 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h3><p><code>Looper</code> 类主要用于一个线程循环获取消息队列中的消息。<code>Looper</code> 的作用主要是负责管理消息队列，负责消息的出列和入列操作。</p>
+<h3 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h3><p><code>android.os.Message</code> 是定义一个 <code>Message</code> 包含必要的描述和属性数据，此对象可以被发送给 <code>android.os.Handler</code> 并关联到一个 <code>handler</code> 处理其中的消息。<br><code>Message</code> 对象不是直接 <code>new</code> 出来的，只要调用 <code>handler</code> 中的 <code>obtainMessage</code> 方法来直接获得 <code>Message</code> 对象。<br>它的属性字段分别有：<code>arg1</code>、<code>arg2</code>、<code>what</code>、<code>obj</code>、<code>replyTo</code> 等，<code>arg1</code> 和 <code>arg2</code> 是用来存放整型数据的，<code>what</code> 是用来保存消息标示的<br><code>obj</code> 是 <code>Object</code> 类型的任意对象，<code>replyTo</code> 是消息管理器。</p>
 <p>待补充。。。</p>
 
             </div>
@@ -512,7 +500,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://spielberggao.com/java-fan-xing-yu-kotlin-fan-xing/">http://spielberggao.com/java-fan-xing-yu-kotlin-fan-xing/</a>
+                    <a href="http://spielberggao.com/handler/">http://spielberggao.com/handler/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -550,8 +538,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Kotlin-%E4%B8%8E-Java/">
-                                    <span class="chip bg-color">Kotlin 与 Java</span>
+                                <a href="/tags/Android-%E5%9F%BA%E7%A1%80/">
+                                    <span class="chip bg-color">Android 基础</span>
                                 </a>
                             
                         </div>
@@ -717,9 +705,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/handler/">
                     <div class="card-image">
@@ -737,9 +726,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -748,6 +737,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -766,20 +756,19 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/ge-ren-zong-jie/">
+                <a href="/java-fan-xing-yu-kotlin-fan-xing/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="创业团队经历与总结">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Java 范型与 Kotlin 范型">
                         
-                        <span class="card-title">创业团队经历与总结</span>
+                        <span class="card-title">Java 范型与 Kotlin 范型</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在这里我总结一下工作中与生活中遇到的事情。
-在2019年7月入职一家创业团队，在入职前已经做好最累的打算实际上我做的打算与遇到的差距还不小。工作是 996 的性质，但是实际上大多数下班时间是在10点或这更晚一些。回到住的地方大概时间是在11
+                            Java 泛型就是把一种语法糖，通过泛型使得在编译阶段完成一些类型转换的工作，避免在运行时强制类型转换而出现ClassCastException，即类型转换异常。Java中最常用的语法糖主要有泛型、变长参数、条件编译、自动拆装箱、内部类等。
                         
                     </div>
                     <div class="publish-info">
@@ -797,8 +786,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%80%BB%E7%BB%93/">
-                        <span class="chip bg-color">总结</span>
+                    <a href="/tags/Kotlin-%E4%B8%8E-Java/">
+                        <span class="chip bg-color">Kotlin 与 Java</span>
                     </a>
                     
                 </div>

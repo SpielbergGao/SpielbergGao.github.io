@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Handler</title>
+      <link href="/handler/"/>
+      <url>/handler/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h2><p><code>Handler</code> 用于跨线程通信，当子线程中进行耗时操作后需要更新 UI 时，通过 <code>Handler</code> 将有关 UI 的操作切换到主线程中执行。<br><code>Handler</code> 主要有俩个用途首先是可以用来定时处理或者分发消息，其次可以在其他线程中添加操作。</p><h3 id="必要条件"><a href="#必要条件" class="headerlink" title="必要条件:"></a>必要条件:</h3><ul><li>Message（消息）：需要被传递的消息其中包含了消息 ID，消息处理对象以及处理的数据等，由 <code>MessageQueue</code> 存储，最终由 <code>Handler</code> 处理。</li><li>MessageQueue（消息队列）：将 <code>Handler</code> 发送过来的消息存入一个消息队列中来依次执行，内部通过单链表的数据结构来维护消息列表。</li><li>Handler（处理者）：负责 <code>Message</code> 的发送及处理。通过 <code>Handler.sendMessage()</code> 向消息池发送各种消息事件,通过 <code>Handler.handleMessage()</code> 处理相应的消息事件。</li><li>Looper（消息泵）：通过 <code>Looper.loop()</code> 不断地从 <code>MessageQueue</code> 中抽取 <code>Message</code>，按分发机制将消息分发给目标处理者。<code>Looper</code> 不断从 <code>MessageQueue</code> 中获取消息并将之传递给消息处理者（即是消息发送者 <code>Handler</code> 本身）进行处理。</li></ul><h3 id="具体流程"><a href="#具体流程" class="headerlink" title="具体流程"></a>具体流程</h3><ul><li><code>Handler.sendMessage()</code> 发送消息时，会通过 <code>MessageQueue.enqueueMessage()</code> 向 <code>MessageQueue</code> 中添加一条消息。</li><li>通过 <code>Looper.loop()</code> 开启循环后，不断轮询调用 <code>MessageQueue.next()</code>；</li><li>调用目标 <code>Handler.dispatchMessage()</code> 去传递消息，目标 <code>Handler</code> 收到消息后调用 <code>Handler.handlerMessage()</code> 处理消息。</li></ul><h3 id="MessageQueue"><a href="#MessageQueue" class="headerlink" title="MessageQueue"></a>MessageQueue</h3><p><code>MessageQueue</code> 用来执行插入与读取的操作，使用 <code>enqueueMessage()</code> 往消息队列中插入一条消息， <code>next()</code> 的作用是从消息队列中取出一条消息并将其从消息队列中移除。其内部是使用一个单链表的数据结构来维护消息列表，单链表在插入和删除上比较有优势。</p><h3 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h3><p><code>Looper</code> 类主要用于一个线程循环获取消息队列中的消息。<code>Looper</code> 的作用主要是负责管理消息队列，负责消息的出列和入列操作。</p><h3 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h3><p><code>android.os.Message</code> 是定义一个 <code>Message</code> 包含必要的描述和属性数据，此对象可以被发送给 <code>android.os.Handler</code> 并关联到一个 <code>handler</code> 处理其中的消息。<br><code>Message</code> 对象不是直接 <code>new</code> 出来的，只要调用 <code>handler</code> 中的 <code>obtainMessage</code> 方法来直接获得 <code>Message</code> 对象。<br>它的属性字段分别有：<code>arg1</code>、<code>arg2</code>、<code>what</code>、<code>obj</code>、<code>replyTo</code> 等，<code>arg1</code> 和 <code>arg2</code> 是用来存放整型数据的，<code>what</code> 是用来保存消息标示的<br><code>obj</code> 是 <code>Object</code> 类型的任意对象，<code>replyTo</code> 是消息管理器。</p><p>待补充。。。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Android 基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java 范型与 Kotlin 范型</title>
       <link href="/java-fan-xing-yu-kotlin-fan-xing/"/>
       <url>/java-fan-xing-yu-kotlin-fan-xing/</url>
