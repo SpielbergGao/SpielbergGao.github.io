@@ -28,8 +28,8 @@ Mes">
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Spielberg Gao" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Spielberg Gao" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -686,7 +686,7 @@ Mes">
         <span class="token punctuation">}</span>
         <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span></code></pre>
-<h6 id="MessageQueue-读取-Message-回调给-Handler"><a href="#MessageQueue-读取-Message-回调给-Handler" class="headerlink" title="MessageQueue 读取 Message 回调给 Handler"></a>MessageQueue 读取 Message 回调给 Handler</h6><p>再看下 <code>MessageQueue</code> 是如何读取 <code>Message</code> 并回调给 <code>Handler</code> 的,在 <code>MessageQueue</code> 中消息的读取其实是通过内部的 <code>next()</code> 方法进行的，<br><code>next()</code> 方法是一个无限循环的方法，如果消息队列中没有消息，则该方法会一直阻塞，当有新消息来的时候 <code>next()</code> 方法会返回这条消息并将其从单链表中删除。</p>
+<h5 id="MessageQueue-读取-Message-回调给-Handler"><a href="#MessageQueue-读取-Message-回调给-Handler" class="headerlink" title="MessageQueue 读取 Message 回调给 Handler"></a>MessageQueue 读取 Message 回调给 Handler</h5><p>再看下 <code>MessageQueue</code> 是如何读取 <code>Message</code> 并回调给 <code>Handler</code> 的,在 <code>MessageQueue</code> 中消息的读取其实是通过内部的 <code>next()</code> 方法进行的，<br><code>next()</code> 方法是一个无限循环的方法，如果消息队列中没有消息，则该方法会一直阻塞，当有新消息来的时候 <code>next()</code> 方法会返回这条消息并将其从单链表中删除。</p>
 <pre class=" language-java"><code class="language-java">    Message <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// Return here if the message loop has already quit and been disposed.</span>
         <span class="token comment" spellcheck="true">// This can happen if the application tries to restart a looper after quit</span>
