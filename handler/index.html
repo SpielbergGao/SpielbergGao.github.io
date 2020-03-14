@@ -528,11 +528,9 @@ Mes">
 <h5 id="handler-sendMessage-msg"><a href="#handler-sendMessage-msg" class="headerlink" title="handler.sendMessage(msg)"></a>handler.sendMessage(msg)</h5><p>在 <code>enqueueMessage(queue, msg, uptimeMillis)</code> 这个方法中可以看到 <code>msg.target</code> 就是 Handler 本身，而这里的 <code>queue</code> 是 Handler 内部维护 Looper 所关联的 MessageQueue 对象。</p>
 <pre class=" language-java"><code class="language-java">    handler<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token comment" spellcheck="true">//追踪到这一步</span>
     <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">boolean</span> <span class="token function">sendMessage</span><span class="token punctuation">(</span>Message msg<span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token function">sendMessageDelayed</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
 
     <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">sendMessageAtTime</span><span class="token punctuation">(</span>Message msg<span class="token punctuation">,</span> <span class="token keyword">long</span> uptimeMillis<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         MessageQueue queue <span class="token operator">=</span> mQueue<span class="token punctuation">;</span>
@@ -559,9 +557,7 @@ Mes">
         <span class="token keyword">return</span> sThreadLocal<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">prepare</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> quitAllowed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//只允许赋值一次</span>
-        <span class="token comment" spellcheck="true">//如果重复赋值则抛出异常</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">prepare</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> quitAllowed<span class="token punctuation">)</span> 
         <span class="token keyword">if</span> <span class="token punctuation">(</span>sThreadLocal<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"Only one Looper may be created per thread"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
