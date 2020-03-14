@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://spielberggao.com/"/>
-  <updated>2020-03-13T14:31:03.225Z</updated>
+  <updated>2020-03-14T00:38:54.971Z</updated>
   <id>http://spielberggao.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://spielberggao.com/handler/"/>
     <id>http://spielberggao.com/handler/</id>
     <published>2020-03-13T12:25:46.000Z</published>
-    <updated>2020-03-13T14:31:03.225Z</updated>
+    <updated>2020-03-14T00:38:54.971Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;h2 id=&quot;Handler&quot;&gt;&lt;a href=&quot;#Handler&quot; class=&quot;headerlink&quot; title=&quot;Handler&quot;&gt;&lt;/a&gt;Handler&lt;/h2&gt;&lt;p&gt;&lt;code&gt;Handler&lt;/code&gt; 用于跨线程通信，当子线程中进行耗时操作后需要更新 UI
+          &lt;h2 id=&quot;Handler&quot;&gt;&lt;a href=&quot;#Handler&quot; class=&quot;headerlink&quot; title=&quot;Handler&quot;&gt;&lt;/a&gt;Handler&lt;/h2&gt;&lt;p&gt;&lt;code&gt;Handler&lt;/code&gt;
         
       
     

@@ -5,7 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Handler, Spielberg Gao">
-    <meta name="description" content="HandlerHandler 用于跨线程通信，当子线程中进行耗时操作后需要更新 UI 时，通过 Handler 将有关 UI 的操作切换到主线程中执行。Handler 主要有俩个用途首先是可以用来定时处理或者分发消息，其次可以在其他线程中添">
+    <meta name="description" content="HandlerHandler 主要有俩个用途首先是可以用来定时处理或者分发消息，其次可以在其他线程中添加操作。当在子线程中进行耗时操作后需要更新 UI 时可以通过 Handler 将有关 UI 的操作切换到主线程中执行。
+必要条件:
+Mes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -468,7 +470,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h2><p><code>Handler</code> 用于跨线程通信，当子线程中进行耗时操作后需要更新 UI 时，通过 <code>Handler</code> 将有关 UI 的操作切换到主线程中执行。<br><code>Handler</code> 主要有俩个用途首先是可以用来定时处理或者分发消息，其次可以在其他线程中添加操作。</p>
+                <h2 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h2><p><code>Handler</code> 主要有俩个用途首先是可以用来定时处理或者分发消息，其次可以在其他线程中添加操作。当在子线程中进行耗时操作后需要更新 UI 时可以通过 <code>Handler</code> 将有关 UI 的操作切换到主线程中执行。</p>
 <h3 id="必要条件"><a href="#必要条件" class="headerlink" title="必要条件:"></a>必要条件:</h3><ul>
 <li>Message（消息）：需要被传递的消息其中包含了消息 ID，消息处理对象以及处理的数据等，由 <code>MessageQueue</code> 存储，最终由 <code>Handler</code> 处理。</li>
 <li>MessageQueue（消息队列）：将 <code>Handler</code> 发送过来的消息存入一个消息队列中来依次执行，内部通过单链表的数据结构来维护消息列表。</li>
@@ -731,7 +733,9 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            HandlerHandler 用于跨线程通信，当子线程中进行耗时操作后需要更新 UI 时，通过 Handler 将有关 UI 的操作切换到主线程中执行。Handler 主要有俩个用途首先是可以用来定时处理或者分发消息，其次可以在其他线程中添
+                            HandlerHandler 主要有俩个用途首先是可以用来定时处理或者分发消息，其次可以在其他线程中添加操作。当在子线程中进行耗时操作后需要更新 UI 时可以通过 Handler 将有关 UI 的操作切换到主线程中执行。
+必要条件:
+Mes
                         
                     </div>
                     <div class="publish-info">

@@ -563,7 +563,9 @@
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                HandlerHandler 用于跨线程通信，当子线程中进行耗时操作后需要更新 UI 时，通过 Handler 将有关 UI 的操作切换到主线程中执行。Handler 主要有俩个用途首先是可以用来定时处理或者分发消息，其次可以在其他线程中添
+                                HandlerHandler 主要有俩个用途首先是可以用来定时处理或者分发消息，其次可以在其他线程中添加操作。当在子线程中进行耗时操作后需要更新 UI 时可以通过 Handler 将有关 UI 的操作切换到主线程中执行。
+必要条件:
+Mes
                             
                         </div>
                         <div class="publish-info">
