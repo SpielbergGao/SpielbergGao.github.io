@@ -700,6 +700,131 @@
         <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span></code></pre>
 <p>可以看到，先判断查找的o对象是否为空，然后再去遍历所有的元素，然后返回此列表中指定元素的首次出现的索引，如果此列表不包含此元素，则为-1。最后判断如果此列表包含指定的元素，则返回true，否则返回false。</p>
+<h3 id="System-arraycopy-和Arrays-copyOf"><a href="#System-arraycopy-和Arrays-copyOf" class="headerlink" title="System.arraycopy()和Arrays.copyOf()"></a>System.arraycopy()和Arrays.copyOf()</h3><p>以下的代码是从源码中找到的，比较长大部分是注释的内容可以直接看总结部分。</p>
+<pre class=" language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">,</span> E element<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">rangeCheckForAdd</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token function">ensureCapacityInternal</span><span class="token punctuation">(</span>size <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// Increments modCount!!</span>
+        System<span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>elementData<span class="token punctuation">,</span> index<span class="token punctuation">,</span> elementData<span class="token punctuation">,</span> index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                         size <span class="token operator">-</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        elementData<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> element<span class="token punctuation">;</span>
+        size<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 返回一个副本，该细分按正确的顺序（从第一个元素到最后一个元素）包含列表中的所有元素。
+     * &lt;p>（换句话说，这个方法必须分配一个新数组）。因此，调用者可以自由修改返回的数组。
+     * &lt;p> 此方法充当基于数组的API和基于集合的API之间的桥梁。
+     * @return 包含此列表中所有元素的序列按适当顺序的数组
+     */</span>
+    <span class="token keyword">public</span> Object<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> Arrays<span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>elementData<span class="token punctuation">,</span> size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 复制指定的数组，截断或填充为空（如果需要），以便副本具有指定的长度。 对于在原始数组和副本中均
+     * 有效的所有索引，两个数组将包含相同的值。 对于副本中有效但原始索引无效的任何索引，副本将包含
+     * &lt;tt> null &lt;/ tt>。 当且仅当指定长度大于原始数组的长度时，此类索引才会存在。 所得数组与原始数组完
+     * 全相同。
+     *
+     * @param &lt;T> 数组中对象的类
+     * @param original 要复制的数组
+     * @param newLength 要返回的副本的长度
+     * @return 原始数组的副本，被截断或用null填充以获取指定的长度
+     * @throws NegativeArraySizeException 如果 &lt;tt>newLength&lt;/tt> 为负
+     * @throws NullPointerException- 如果&lt;tt>原始&lt;/ tt>为null
+     * @since 1.6
+     */</span>
+    <span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">"unchecked"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> T<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">copyOf</span><span class="token punctuation">(</span>T<span class="token punctuation">[</span><span class="token punctuation">]</span> original<span class="token punctuation">,</span> <span class="token keyword">int</span> newLength<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>T<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token function">copyOf</span><span class="token punctuation">(</span>original<span class="token punctuation">,</span> newLength<span class="token punctuation">,</span> original<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 复制指定的数组，截断或填充为空（如果需要），以便副本具有指定的长度。
+     * 对于在原始数组和副本中均有效的所有索引，两个数组将包含相同的值。
+     * 对于副本中有效但原始索引无效的任何索引，副本将包含&lt;tt> null &lt;/ tt>。
+     * 当且仅当指定长度大于原始数组的长度时，此类索引才会存在。 所得数组属于&lt;tt> newType &lt;/ tt>类。
+     *
+     * @param &lt;U> 原始数组中对象的类
+     * @param &lt;T> 返回数组中对象的类
+     * @param original 要复制的数组
+     * @param newLength 要返回的副本的长度
+     * @param newType 要返回的副本的类别
+     * @return 原始数组的副本，被截断或用null填充以获取指定的长度
+     * @throws NegativeArraySizeException 如果 &lt;tt>newLength&lt;/tt> 是为负的
+     * @throws NullPointerException 如果 &lt;tt>original&lt;/tt> 是 null
+     * @throws ArrayStoreException 如果从&lt;tt>original&lt;/tt>复制的元素不是可以存储在&lt;tt>newType&lt;/tt>类数组中的运行时类型
+     * @since 1.6
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token punctuation">,</span>U<span class="token operator">></span> T<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">copyOf</span><span class="token punctuation">(</span>U<span class="token punctuation">[</span><span class="token punctuation">]</span> original<span class="token punctuation">,</span> <span class="token keyword">int</span> newLength<span class="token punctuation">,</span> Class<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">T</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">></span> newType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">"unchecked"</span><span class="token punctuation">)</span>
+        T<span class="token punctuation">[</span><span class="token punctuation">]</span> copy <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>Object<span class="token punctuation">)</span>newType <span class="token operator">==</span> <span class="token punctuation">(</span>Object<span class="token punctuation">)</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+            <span class="token operator">?</span> <span class="token punctuation">(</span>T<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">[</span>newLength<span class="token punctuation">]</span>
+            <span class="token operator">:</span> <span class="token punctuation">(</span>T<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> Array<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span>newType<span class="token punctuation">.</span><span class="token function">getComponentType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> newLength<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>original<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> copy<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                         Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>original<span class="token punctuation">.</span>length<span class="token punctuation">,</span> newLength<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> copy<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 从指定的源数组（从指定位置开始）复制数组到目标数组的指定位置。
+     * 数组组件的子序列从 &lt;code>src&lt;/code> 引用的源数组复制到 &lt;code>dest&lt;/code> 引用的目标数组。
+     * 复制的组件数等于 &lt;code>length&lt;/code> 参数。
+     * 将源数组中位置 &lt;code>srcPos&lt;/code> 到 &lt;code>srcPos + length-1&lt;/code> 的组件复制到位置 &lt;code>destPos&lt;/code> 到
+     * &lt;code>destPos + length-1的组件&lt;/code> 分别为目标数组。
+     * &lt;p>
+     * 如果&lt;code> src &lt;/ code>和&lt;code> dest &lt;/ code>参数引用相同的数组对象，则将执行复制，
+     * 就好像位置&lt;code> srcPos &lt;/ code>到&lt;code>的组件一样 首先将srcPos + length-1 &lt;/ code>复制到具有&lt;code> 
+     * length &lt;/ code>组件的临时数组中，然后通过&lt;code>将临时数组的内容复制到
+     * &lt;code> destPos &lt;/ code>中 目标数组的destPos + length-1 &lt;/ code>。
+     * &lt;p>
+     * 如果&lt;code> dest &lt;/ code>为&lt;code> null &lt;/ code>，则抛出&lt;code> NullPointerException &lt;/ code>。
+     * &lt;p>
+     * 如果&lt;code> src &lt;/ code>为&lt;code> null &lt;/ code>，则将引发&lt;code> NullPointerException &lt;/ code>，并且不会修改目标数组。
+     * &lt;p>
+     * 否则，如果满足以下任一条件，则将抛出&lt;code> ArrayStoreException &lt;/ code>，并且不会修改目标：
+     * &lt;ul>
+     * &lt;li> &lt;code> src &lt;/ code>参数引用的对象不是数组。
+     * &lt;li> &lt;code> dest &lt;/ code>参数引用的对象不是数组。
+     * &lt;li> &lt;code> src &lt;/ code>参数和&lt;code> dest &lt;/ code>参数引用其组件类型为不同原始类型的数组
+     * &lt;li> &lt;code> src &lt;/ code>参数引用具有原始组件类型的数组，而&lt;code> dest &lt;/ code>参数引用具有引用组件类型的数组。
+     * &lt;li> &lt;code> src &lt;/ code>参数引用具有引用组件类型的数组，而&lt;code> dest &lt;/ code>参数引用具有原始组件类型的数组。
+     * &lt;/ul>
+     * &lt;p>
+     * 否则，如果满足以下任一条件，则会抛出&lt;code> IndexOutOfBoundsException &lt;/ code>，并且不会修改目标：
+     * &lt;ul>
+     * &lt;li> &lt;code> srcPos &lt;/ code>参数为负。
+     * &lt;li> &lt;code> destPos &lt;/ code>参数为负。
+     * &lt;li> &lt;code> length &lt;/ code>参数为负。
+     * &lt;li> &lt;code> srcPos + length &lt;/ code>大于源数组的长度&lt;code> src.length &lt;/ code>。
+     * &lt;li> &lt;code> destPos + length &lt;/ code>大于目标数组的长度&lt;code> dest.length &lt;/ code>。
+     * &lt;/ul>
+     * &lt;p>
+     * 否则，如果从位置&lt;code> srcPos &lt;/ code>到&lt;code> srcPos + length-1 &lt;/ code>的源数组的任何实际组件
+     * 都无法通过赋值转换转换为目标数组的组件类型，则&lt; 抛出code> ArrayStoreException &lt;/ code>。 在这种
+     * 情况下，让&lt;b> &lt;i> k &lt;/ i> &lt;/ b>是小于长度的最小非负整数，这样&lt;code> src [srcPos + &lt;/ code> &lt;i> k &lt;/ i>
+     *  &lt;code >] &lt;/ code>不能转换为目标数组的组件类型； 当引发异常时，从位置&lt;code> srcPos &lt;/ code>到
+     * &lt;code> srcPos + &lt;/ code> &lt;i> k &lt;/ i> &lt;code> -1 &lt;/ code>的源数组组件将已经被复制 到目标数组位置
+     * &lt;code> destPos &lt;/ code>到&lt;code> destPos + &lt;/ code> &lt;i> k &lt;/ I> &lt;code> -1 &lt;/ code>，并且目标数组的
+     * 其他位置都不会被修改 。 （由于已经逐项列出了限制，因此本段仅适用于两个数组都具有引用类型的组件类型的情况。）
+     *
+     * @param      src      源数组。
+     * @param      srcPos   源数组中的起始位置。
+     * @param      dest     目标数组。
+     * @param      destPos  目标数据中的起始位置。
+     * @param      length   要复制的数组元素的数量。
+     * @exception  IndexOutOfBoundsException 如果复制将导致超出数组范围的数据访问。
+     * @exception  ArrayStoreException 如果由于类型不匹配而无法将&lt;code> src &lt;/ code>数组中的元素存储到&lt;code> dest &lt;/ code>数组中。
+     * @exception  如果&lt;code> src &lt;/ code>或&lt;code> dest &lt;/ code>为&lt;code> null &lt;/ code>，则为 NullPointerException。
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">native</span> <span class="token keyword">void</span> <span class="token function">arraycopy</span><span class="token punctuation">(</span>Object src<span class="token punctuation">,</span>  <span class="token keyword">int</span>  srcPos<span class="token punctuation">,</span>
+                                        Object dest<span class="token punctuation">,</span> <span class="token keyword">int</span> destPos<span class="token punctuation">,</span>
+                                        <span class="token keyword">int</span> length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>通过上面代码可以看到 <code>copyOf()</code> 内部调用了 <code>System.arraycopy()</code>，这个方法是数组扩容的核心所在，是一个 <code>native</code> 方法。</p>
+<p>他俩的区别在用法上 <code>arraycopy()</code> 需要目标数组，将原数组拷贝到你自己定义的数组里，而且可以选择拷贝的起点和长度以及放入新数组中的位置 <code>copyOf()</code> 是系统自动在内部新建一个数组，并返回该数组。</p>
+<h3 id="ArrayList-的-Fail-Fast"><a href="#ArrayList-的-Fail-Fast" class="headerlink" title="ArrayList 的 Fail-Fast"></a>ArrayList 的 Fail-Fast</h3><p><code>Fail-Fast</code> 是 Java 集合的一种错误检测机制，当多个线程对集合进行结构上的改变的操作时，有可能会产生 <code>Fail-Fast</code> 机制。原因是迭代器在遍历时直接访问集合中的内容，并且在遍历过程中使用一个 <code>modCount</code> 变量。集合在被遍历期间如果内容发生变化，就会改变 <code>modCount</code> 的值。<br>每当迭代器使用 <code>hashNext()/next()</code> 遍历下一个元素之前，都会检测 <code>modCount</code> 变量是否为 <code>expectedmodCount</code> 值，是的话就返回遍历；否则抛出异常，终止遍历。<br>解决办法是，使用 <code>CopyOnWriteArrayList</code> 来替换 ArrayList 或者使用 <code>Collections.synchronizedList(list)</code></p>
 
             </div>
             <hr/>
