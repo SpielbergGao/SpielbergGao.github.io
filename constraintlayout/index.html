@@ -514,27 +514,29 @@
 <li>layout_constraintHorizontal_bias</li>
 <li>layout_constraintVertical_bias</li>
 </ul>
+<p><code>layout_constraintHorizontal_bias</code> 使用该属性前需要对当前子布局与父布局进行 <code>start</code> 及 <code>end</code> 约束，<code>layout_constraintVertical_bias</code> 使用该属性时需要对当前子布局与父布局进行 <code>top</code> 及 <code>bottom</code> 约束。</p>
 <h2 id="圆形定位"><a href="#圆形定位" class="headerlink" title="圆形定位"></a>圆形定位</h2><ul>
 <li>layout_constraintCircle : 引用另一个小部件ID</li>
 <li>layout_constraintCircleRadius : 到另一个小部件中心的距离</li>
 <li>layout_constraintCircleAngle : 小部件应处于的角度（以度为单位，从0到360）</li>
 </ul>
-<pre class=" language-xml"><code class="language-xml">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/buttonA<span class="token punctuation">"</span></span> <span class="token attr-name">...</span> <span class="token punctuation">/></span></span>
+<pre class=" language-xml"><code class="language-xml">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/buttonA<span class="token punctuation">"</span></span>  <span class="token punctuation">/></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> 
-        <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/buttonB<span class="token punctuation">"</span></span> <span class="token attr-name">...</span>
+        <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/buttonB<span class="token punctuation">"</span></span> 
         <span class="token attr-name"><span class="token namespace">app:</span>layout_constraintCircle</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/buttonA<span class="token punctuation">"</span></span>
         <span class="token attr-name"><span class="token namespace">app:</span>layout_constraintCircleRadius</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100dp<span class="token punctuation">"</span></span>
         <span class="token attr-name"><span class="token namespace">app:</span>layout_constraintCircleAngle</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>45<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
 <h2 id="尺寸限制"><a href="#尺寸限制" class="headerlink" title="尺寸限制"></a>尺寸限制</h2><h3 id="MATCH-CONSTRAINT尺寸"><a href="#MATCH-CONSTRAINT尺寸" class="headerlink" title="MATCH_CONSTRAINT尺寸"></a>MATCH_CONSTRAINT尺寸</h3><p>当尺寸设置为时 MATCH_CONSTRAINT，默认行为是使结果尺寸占用所有可用空间。可以使用其他几个修饰符：</p>
 <ul>
-<li>layout_constraintWidth_min和layout_constraintHeight_min：将为此尺寸设置最小尺寸</li>
-<li>layout_constraintWidth_max和layout_constraintHeight_max：将为此尺寸设置最大尺寸</li>
-<li>layout_constraintWidth_percent和layout_constraintHeight_percent：将此尺寸的尺寸设置为父尺寸的百分比</li>
+<li>layout_constraintWidth_min 和 layout_constraintHeight_min：将为此尺寸设置最小尺寸</li>
+<li>layout_constraintWidth_max 和 layout_constraintHeight_max：将为此尺寸设置最大尺寸</li>
+<li>layout_constraintWidth_percent 和 layout_constraintHeight_percent：将此尺寸的尺寸设置为父尺寸的百分比</li>
 </ul>
+<p><code>layout_constraintWidth_percent</code> 使用前需要根据父布局的开始及结束定位，如果 <code>width</code> 设置为 <code>0dp</code> 这默认充满整个宽度，<code>layout_constraintHeight_percent</code> 使用前需要顶部及底部与父布局尽心约束，<br><code>height</code> 设置为 <code>0dp</code> 默认充满整个高度,如果顶部及底部没有进行约束，则设置无效。</p>
 <h3 id="最小与最大"><a href="#最小与最大" class="headerlink" title="最小与最大"></a>最小与最大</h3><ul>
 <li>尺寸应设置为 MATCH_CONSTRAINT（0dp）</li>
-<li>默认值应设置为百分比app:layout_constraintWidth_default=”percent” 或 app:layout_constraintHeight_default=”percent”</li>
-<li>然后将 layout_constraintWidth_percent 或 layout_constraintHeight_percent 属性设置为介于 0 和 1 之间的值<br>比</li>
+<li>默认值应设置为百分比 <code>app:layout_constraintWidth_default=&quot;percent&quot;</code> 或 <code>app:layout_constraintHeight_default=&quot;percent&quot;</code></li>
+<li>然后将 <code>layout_constraintWidth_percent</code> 或 <code>layout_constraintHeight_percent</code> 属性设置为介于 0 和 1 之间的值<br>比</li>
 </ul>
 <pre class=" language-xml"><code class="language-xml">    <span class="token comment" spellcheck="true">&lt;!--浮点值，表示宽度和高度之间的比率形式为“宽度：高度”的比率 --></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> 
