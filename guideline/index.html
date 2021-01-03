@@ -4,8 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="LinkedList, Spielberg Gao">
-    <meta name="description" content="LinkedListLinkedList 同时实现了 List 接口和 Deque 接口，所以既可以将 LinkedList 当做一个有序容器，也可以将之看作一个队列（Queue），同时又可以看作一个栈（Stack）。虽然 LinkedLi">
+    <meta name="keywords" content="Guideline, Spielberg Gao">
+    <meta name="description" content="Guideline 在日常使用可以作为一个基准线通过设置方向及比例来调整这条基准线所在的位置，其他控件以这条基准线来作为约束点。
+在使用中发现 Guideline 随着屏幕高度的变化所在位置也会发生变化，例如当界面弹出键盘时界面的高度会发生">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>LinkedList | Spielberg Gao</title>
+    <title>Guideline | Spielberg Gao</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -304,12 +305,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LinkedList</h1>
+                    <h1 class="description center-align post-title">Guideline</h1>
                 </div>
             </div>
         </div>
@@ -426,8 +427,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Java/">
-                                <span class="chip bg-color">Java</span>
+                            <a href="/tags/%E5%B8%83%E5%B1%80/">
+                                <span class="chip bg-color">布局</span>
                             </a>
                         
                     </div>
@@ -438,8 +439,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
-                                数据结构
+                            <a href="/categories/Android/" class="post-category">
+                                Android
                             </a>
                         
                     </div>
@@ -451,7 +452,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-20
+                    2021-01-03
                 </div>
                 
 
@@ -468,227 +469,113 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><p>LinkedList 同时实现了 List 接口和 Deque 接口，所以既可以将 LinkedList 当做一个有序容器，也可以将之看作一个队列（Queue），同时又可以看作一个栈（Stack）。虽然 LinkedList 和 ArrayList 一样都实现了 List 接口，<br>但其底层是通过双向链表来实现的，所以 LinkedList 插入和删除元素的效率都要比 ArrayList 高，因此随机访问的效率也要比 ArrayList 低。</p>
-<p>实现了List接口和Deque接口，是双端链表，支持高效的插入和删除操作，非线程安全如果需要线程安全可以使用 <code>Collections.synchronizedList(new LinkedList(...))</code></p>
-<p><strong>先看看实例的时候做什么操作</strong></p>
-<pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">/**
-     * 构造一个空列表。
-     */</span>
-    <span class="token keyword">public</span> <span class="token function">LinkedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <p><code>Guideline</code> 在日常使用可以作为一个基准线通过设置方向及比例来调整这条基准线所在的位置，其他控件以这条基准线来作为约束点。</p>
+<p>在使用中发现 <code>Guideline</code> 随着屏幕高度的变化所在位置也会发生变化，例如当界面弹出键盘时界面的高度会发生变化，那 <code>Guideline</code> 所设置的高度比例则会按照屏幕顶部到键盘定这个区间<br>来重新设置其所在的位置。</p>
+<p>那来看看内部是什么样子的:</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Guideline</span> <span class="token keyword">extends</span> <span class="token class-name">View</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token function">Guideline</span><span class="token punctuation">(</span>Context context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">setVisibility</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment" spellcheck="true">/**
-     * 构造一个包含指定集合元素的列表，其顺序由集合的迭代器返回。
-     *
-     * @param  c 将其元素放入此列表的集合
-     * @throws NullPointerException-如果指定的集合为null
-     */</span>
-    <span class="token keyword">public</span> <span class="token function">LinkedList</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">E</span><span class="token operator">></span> c<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">addAll</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
-<p>因为 LinkedList 使用的是链表结构，所以 LinkedList 不需要去请求一片连续的内存空间来存储数据，而是在每次有新的元素需要添加进来时，再来动态请求内存空间。</p>
-<p><strong>成员变量</strong></p>
-<pre class=" language-java"><code class="language-java">
-    <span class="token keyword">transient</span> <span class="token keyword">int</span> size <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 指向第一个节点的指针。
-     * Invariant: (first == null &amp;&amp; last == null) ||
-     *            (first.prev == null &amp;&amp; first.item != null)
-     */</span>
-    <span class="token keyword">transient</span> Node<span class="token operator">&lt;</span>E<span class="token operator">></span> first<span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 指向最后一个节点的指针。
-     * Invariant: (first == null &amp;&amp; last == null) ||
-     *            (last.next == null &amp;&amp; last.item != null)
-     */</span>
-    <span class="token keyword">transient</span> Node<span class="token operator">&lt;</span>E<span class="token operator">></span> last<span class="token punctuation">;</span>
-
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 876323262645176354L<span class="token punctuation">;</span></code></pre>
-<h3 id="add-E-e"><a href="#add-E-e" class="headerlink" title="add(E e)"></a>add(E e)</h3><pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">/**
-     * 将指定的元素追加到此列表的末尾。
-     *
-     * &lt;p> 此方法等效于 {@link #addLast}.
-     *
-     * @param e 要添加到此列表的元素
-     * @return {@code true} (as specified by {@link Collection#add})
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">add</span><span class="token punctuation">(</span>E e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">linkLast</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">Guideline</span><span class="token punctuation">(</span>Context context<span class="token punctuation">,</span> AttributeSet attrs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> attrs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">setVisibility</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment" spellcheck="true">/**
-     * 将e链接为最后一个元素。
-     */</span>
-    <span class="token keyword">void</span> <span class="token function">linkLast</span><span class="token punctuation">(</span>E e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">final</span> Node<span class="token operator">&lt;</span>E<span class="token operator">></span> l <span class="token operator">=</span> last<span class="token punctuation">;</span>
-        <span class="token keyword">final</span> Node<span class="token operator">&lt;</span>E<span class="token operator">></span> newNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> e<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        last <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>l <span class="token operator">==</span> null<span class="token punctuation">)</span>
-            first <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
-        <span class="token keyword">else</span>
-            l<span class="token punctuation">.</span>next <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
-        size<span class="token operator">++</span><span class="token punctuation">;</span>
-        modCount<span class="token operator">++</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
-<p><code>add(E e)</code> 方法用于向链表的尾部添加结点，因为有 <code>last</code> 指向链表的尾结点，因此向尾部添加新元素只需要修改几个引用即可，效率较高。</p>
-<h3 id="add-int-index-E-element"><a href="#add-int-index-E-element" class="headerlink" title="add(int index, E element)"></a>add(int index, E element)</h3><pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">/**
-     * 将指定的元素插入此列表中的指定位置。 将当前在该位置的元素（如果有）和任何后续元素右移（将其索引加一）。
-     *
-     * @param index 指定元素要插入的索引
-     * @param element 要插入的元素
-     * @throws IndexOutOfBoundsException {@inheritDoc}
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">,</span> E element<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">checkPositionIndex</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">==</span> size<span class="token punctuation">)</span>
-            <span class="token function">linkLast</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">else</span>
-            <span class="token function">linkBefore</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span> <span class="token function">node</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">Guideline</span><span class="token punctuation">(</span>Context context<span class="token punctuation">,</span> AttributeSet attrs<span class="token punctuation">,</span> <span class="token keyword">int</span> defStyleAttr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> attrs<span class="token punctuation">,</span> defStyleAttr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">setVisibility</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment" spellcheck="true">/**
-     * 将e链接为最后一个元素。
-     */</span>
-    <span class="token keyword">void</span> <span class="token function">linkLast</span><span class="token punctuation">(</span>E e<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 在非 null 节点 succ 之前插入元素 e。
-     */</span>
-    <span class="token keyword">void</span> <span class="token function">linkBefore</span><span class="token punctuation">(</span>E e<span class="token punctuation">,</span> Node<span class="token operator">&lt;</span>E<span class="token operator">></span> succ<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// assert succ != null;</span>
-        <span class="token keyword">final</span> Node<span class="token operator">&lt;</span>E<span class="token operator">></span> pred <span class="token operator">=</span> succ<span class="token punctuation">.</span>prev<span class="token punctuation">;</span>
-        <span class="token keyword">final</span> Node<span class="token operator">&lt;</span>E<span class="token operator">></span> newNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>pred<span class="token punctuation">,</span> e<span class="token punctuation">,</span> succ<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        succ<span class="token punctuation">.</span>prev <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>pred <span class="token operator">==</span> null<span class="token punctuation">)</span>
-            first <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
-        <span class="token keyword">else</span>
-            pred<span class="token punctuation">.</span>next <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
-        size<span class="token operator">++</span><span class="token punctuation">;</span>
-        modCount<span class="token operator">++</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
-<p><code>add(int index, E element)</code> 方法用于向指定索引处添加元素，需要先通过索引 <code>index</code> 获取相应位置的结点，并在该位置开辟一个新的结点来存储元素 <code>element</code>，最后还需要修改相邻结点间的引用</p>
-<h3 id="addAll-int-index-Collection-lt-extends-E-gt-c"><a href="#addAll-int-index-Collection-lt-extends-E-gt-c" class="headerlink" title="addAll(int index, Collection&lt;? extends E&gt; c)"></a>addAll(int index, Collection&lt;? extends E&gt; c)</h3><pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">/**
-     * 从指定位置开始，将指定集合中的所有元素插入此列表。 
-     * 将当前位于该位置的元素（如果有）和任何后续元素右移（增加其索引）。
-     * 新元素将按指定集合的迭代器返回的顺序显示在列表中。
-     *
-     * @param index 从指定集合插入第一个元素的索引
-     * @param c 包含要添加到此列表的元素的集合
-     * @return {@code true} 该列表是否因调用而改变
-     * @throws IndexOutOfBoundsException {@inheritDoc}
-     * @throws NullPointerException if the specified collection is null
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">addAll</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">,</span> Collection<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">E</span><span class="token operator">></span> c<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">checkPositionIndex</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        Object<span class="token punctuation">[</span><span class="token punctuation">]</span> a <span class="token operator">=</span> c<span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> numNew <span class="token operator">=</span> a<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>numNew <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
-            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-
-        Node<span class="token operator">&lt;</span>E<span class="token operator">></span> pred<span class="token punctuation">,</span> succ<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">==</span> size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            succ <span class="token operator">=</span> null<span class="token punctuation">;</span>
-            pred <span class="token operator">=</span> last<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            succ <span class="token operator">=</span> <span class="token function">node</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            pred <span class="token operator">=</span> succ<span class="token punctuation">.</span>prev<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>Object o <span class="token operator">:</span> a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">"unchecked"</span><span class="token punctuation">)</span> E e <span class="token operator">=</span> <span class="token punctuation">(</span>E<span class="token punctuation">)</span> o<span class="token punctuation">;</span>
-            Node<span class="token operator">&lt;</span>E<span class="token operator">></span> newNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>pred<span class="token punctuation">,</span> e<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>pred <span class="token operator">==</span> null<span class="token punctuation">)</span>
-                first <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
-            <span class="token keyword">else</span>
-                pred<span class="token punctuation">.</span>next <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
-            pred <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>succ <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            last <span class="token operator">=</span> pred<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            pred<span class="token punctuation">.</span>next <span class="token operator">=</span> succ<span class="token punctuation">;</span>
-            succ<span class="token punctuation">.</span>prev <span class="token operator">=</span> pred<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        size <span class="token operator">+=</span> numNew<span class="token punctuation">;</span>
-        modCount<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
-<p>首先对传入的 <code>index</code> 校验是否在 <code>size</code> 之内，通过 <code>c.toArray()</code> 获得一个数组并判断该数组的长度，<br>如果插入的位置是尾部，将前驱节点设置为 <code>last</code>,后继节点为 <code>null</code>，否则调用 <code>node()</code> 方法得到后继节点，<br>在获得前驱节点。然后开始便利数据并将数据插入，如果插入的位置在链表头部新建一个节点否则将指向下一个元素的前驱节点。<br>插入的位置是在末尾则重置 <code>last</code> 节点。</p>
-<h3 id="unlinkFirst-Node-f-unlinkLast-Node-l-unlink-Node-x"><a href="#unlinkFirst-Node-f-unlinkLast-Node-l-unlink-Node-x" class="headerlink" title="unlinkFirst(Node f) unlinkLast(Node l) unlink(Node x)"></a>unlinkFirst(Node<E> f) unlinkLast(Node<E> l) unlink(Node<E> x)</h3><pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">/**
-     * 取消链接非空的第一个节点f。
-     */</span>
-    <span class="token keyword">private</span> E <span class="token function">unlinkFirst</span><span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>E<span class="token operator">></span> f<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// assert f == first &amp;&amp; f != null;</span>
-        <span class="token keyword">final</span> E element <span class="token operator">=</span> f<span class="token punctuation">.</span>item<span class="token punctuation">;</span>
-        <span class="token keyword">final</span> Node<span class="token operator">&lt;</span>E<span class="token operator">></span> next <span class="token operator">=</span> f<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        f<span class="token punctuation">.</span>item <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        f<span class="token punctuation">.</span>next <span class="token operator">=</span> null<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// help GC</span>
-        first <span class="token operator">=</span> next<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>next <span class="token operator">==</span> null<span class="token punctuation">)</span>
-            last <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        <span class="token keyword">else</span>
-            next<span class="token punctuation">.</span>prev <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        size<span class="token operator">--</span><span class="token punctuation">;</span>
-        modCount<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> element<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">Guideline</span><span class="token punctuation">(</span>Context context<span class="token punctuation">,</span> AttributeSet attrs<span class="token punctuation">,</span> <span class="token keyword">int</span> defStyleAttr<span class="token punctuation">,</span> <span class="token keyword">int</span> defStyleRes<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> attrs<span class="token punctuation">,</span> defStyleAttr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">setVisibility</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment" spellcheck="true">/**
-     * 取消链接非空的最后一个节点l。
-     */</span>
-    <span class="token keyword">private</span> E <span class="token function">unlinkLast</span><span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>E<span class="token operator">></span> l<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// assert l == last &amp;&amp; l != null;</span>
-        <span class="token keyword">final</span> E element <span class="token operator">=</span> l<span class="token punctuation">.</span>item<span class="token punctuation">;</span>
-        <span class="token keyword">final</span> Node<span class="token operator">&lt;</span>E<span class="token operator">></span> prev <span class="token operator">=</span> l<span class="token punctuation">.</span>prev<span class="token punctuation">;</span>
-        l<span class="token punctuation">.</span>item <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        l<span class="token punctuation">.</span>prev <span class="token operator">=</span> null<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// help GC</span>
-        last <span class="token operator">=</span> prev<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>prev <span class="token operator">==</span> null<span class="token punctuation">)</span>
-            first <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        <span class="token keyword">else</span>
-            prev<span class="token punctuation">.</span>next <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        size<span class="token operator">--</span><span class="token punctuation">;</span>
-        modCount<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> element<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setVisibility</span><span class="token punctuation">(</span><span class="token keyword">int</span> visibility<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment" spellcheck="true">/**
-     * 取消链接非空节点x。
-     */</span>
-    E <span class="token function">unlink</span><span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>E<span class="token operator">></span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// assert x != null;</span>
-        <span class="token keyword">final</span> E element <span class="token operator">=</span> x<span class="token punctuation">.</span>item<span class="token punctuation">;</span>
-        <span class="token keyword">final</span> Node<span class="token operator">&lt;</span>E<span class="token operator">></span> next <span class="token operator">=</span> x<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">final</span> Node<span class="token operator">&lt;</span>E<span class="token operator">></span> prev <span class="token operator">=</span> x<span class="token punctuation">.</span>prev<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">draw</span><span class="token punctuation">(</span>Canvas canvas<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>prev <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            first <span class="token operator">=</span> next<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            prev<span class="token punctuation">.</span>next <span class="token operator">=</span> next<span class="token punctuation">;</span>
-            x<span class="token punctuation">.</span>prev <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onMeasure</span><span class="token punctuation">(</span><span class="token keyword">int</span> widthMeasureSpec<span class="token punctuation">,</span> <span class="token keyword">int</span> heightMeasureSpec<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setMeasuredDimension</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setGuidelineBegin</span><span class="token punctuation">(</span><span class="token keyword">int</span> margin<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        LayoutParams params <span class="token operator">=</span> <span class="token punctuation">(</span>LayoutParams<span class="token punctuation">)</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getLayoutParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span>guideBegin <span class="token operator">=</span> margin<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setLayoutParams</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setGuidelineEnd</span><span class="token punctuation">(</span><span class="token keyword">int</span> margin<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        LayoutParams params <span class="token operator">=</span> <span class="token punctuation">(</span>LayoutParams<span class="token punctuation">)</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getLayoutParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span>guideEnd <span class="token operator">=</span> margin<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setLayoutParams</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setGuidelinePercent</span><span class="token punctuation">(</span><span class="token keyword">float</span> ratio<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        LayoutParams params <span class="token operator">=</span> <span class="token punctuation">(</span>LayoutParams<span class="token punctuation">)</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getLayoutParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span>guidePercent <span class="token operator">=</span> ratio<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setLayoutParams</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>以上是 <code>Guideline</code> 所有的代码，构造方法是标准的三种，内部调用了 <code>View.GONE</code> 默认为不显示。来看一下 <code>setLayoutParams(params)</code></p>
+<pre class=" language-java"><code class="language-java">    LayoutParams params <span class="token operator">=</span> <span class="token punctuation">(</span>LayoutParams<span class="token punctuation">)</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getLayoutParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    params<span class="token punctuation">.</span>guideBegin <span class="token operator">=</span> margin<span class="token punctuation">;</span>
+    params<span class="token punctuation">.</span>guideEnd <span class="token operator">=</span> margin<span class="token punctuation">;</span>
+    params<span class="token punctuation">.</span>guidePercent <span class="token operator">=</span> ratio<span class="token punctuation">;</span>
+    <span class="token function">setLayoutParams</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>内部的三个方法分别设置了 <code>LayoutParams</code> 中三个属性值然后调用 <code>setLayoutParams(params)</code> 来设置最终的布局参数，那这三个方法又到了哪里？被谁使用了呢？</p>
+<p>进入  <code>LayoutParams</code> 中寻找一下这三个属性看看,进入后发现它是 <code>ConstraintLayout</code> 中的一个  <code>LayoutParams</code> 静态类</p>
+<pre class=" language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConstraintLayout</span> <span class="token keyword">extends</span> <span class="token class-name">ViewGroup</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// ... 省略其他代码</span>
+        <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">setChildrenConstraints</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> count<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token keyword">if</span> <span class="token punctuation">(</span>layoutParams<span class="token punctuation">.</span>isGuideline<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                      androidx<span class="token punctuation">.</span>constraintlayout<span class="token punctuation">.</span>solver<span class="token punctuation">.</span>widgets<span class="token punctuation">.</span>Guideline guideline <span class="token operator">=</span> <span class="token punctuation">(</span>androidx<span class="token punctuation">.</span>constraintlayout<span class="token punctuation">.</span>solver<span class="token punctuation">.</span>widgets<span class="token punctuation">.</span>Guideline<span class="token punctuation">)</span>widget<span class="token punctuation">;</span>
+                      resolvedLeftToRight <span class="token operator">=</span> layoutParams<span class="token punctuation">.</span>resolvedGuideBegin<span class="token punctuation">;</span>
+                      resolvedRightToLeft <span class="token operator">=</span> layoutParams<span class="token punctuation">.</span>resolvedGuideEnd<span class="token punctuation">;</span>
+                      <span class="token keyword">float</span> resolvedGuidePercent <span class="token operator">=</span> layoutParams<span class="token punctuation">.</span>resolvedGuidePercent<span class="token punctuation">;</span>
+                       <span class="token keyword">if</span> <span class="token punctuation">(</span>android<span class="token punctuation">.</span>os<span class="token punctuation">.</span>Build<span class="token punctuation">.</span>VERSION<span class="token punctuation">.</span>SDK_INT <span class="token operator">&lt;</span> <span class="token number">17</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                              resolvedLeftToRight <span class="token operator">=</span> layoutParams<span class="token punctuation">.</span>guideBegin<span class="token punctuation">;</span>
+                              resolvedRightToLeft <span class="token operator">=</span> layoutParams<span class="token punctuation">.</span>guideEnd<span class="token punctuation">;</span>
+                              resolvedGuidePercent <span class="token operator">=</span> layoutParams<span class="token punctuation">.</span>guidePercent<span class="token punctuation">;</span>
+                       <span class="token punctuation">}</span>
+
+                       <span class="token keyword">if</span> <span class="token punctuation">(</span>resolvedGuidePercent <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1.0F</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                           guideline<span class="token punctuation">.</span><span class="token function">setGuidePercent</span><span class="token punctuation">(</span>resolvedGuidePercent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                       <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>resolvedLeftToRight <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                           guideline<span class="token punctuation">.</span><span class="token function">setGuideBegin</span><span class="token punctuation">(</span>resolvedLeftToRight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                       <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>resolvedRightToLeft <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                           guideline<span class="token punctuation">.</span><span class="token function">setGuideEnd</span><span class="token punctuation">(</span>resolvedRightToLeft<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                       <span class="token punctuation">}</span>
+                  <span class="token punctuation">}</span> <span class="token comment" spellcheck="true">// ... 省略其他代码</span>
+            <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
-
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>next <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            last <span class="token operator">=</span> prev<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            next<span class="token punctuation">.</span>prev <span class="token operator">=</span> prev<span class="token punctuation">;</span>
-            x<span class="token punctuation">.</span>next <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">LayoutParams</span> <span class="token keyword">extends</span> <span class="token class-name">MarginLayoutParams</span> <span class="token punctuation">{</span>
+            <span class="token keyword">public</span> <span class="token keyword">int</span> guideBegin <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">public</span> <span class="token keyword">int</span> guideEnd <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">public</span> <span class="token keyword">float</span> guidePercent <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1.0F</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-
-        x<span class="token punctuation">.</span>item <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        size<span class="token operator">--</span><span class="token punctuation">;</span>
-        modCount<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> element<span class="token punctuation">;</span>
     <span class="token punctuation">}</span></code></pre>
-<p>元素做移除操作都离不开上面三种方法，链表移除元素通过更改前后节点指向来完成。</p>
+<p>通过简略后的代码可以看到在 <code>ConstraintLayout</code> 内部的 <code>setChildrenConstraints()</code> 方法通过循环的方式分别拿到子 view，第一个判断条件是否为 <code>isGuideline</code><br>如果条件符合的话根据条件分别设置 <code>setGuidePercent(resolvedGuidePercent)</code> <code>setGuideBegin(resolvedLeftToRight)</code> <code>setGuideEnd(resolvedRightToLeft)</code><br>也对应着 <code>Guideline</code> 内部的方法，而 <code>LayoutParams</code> 则作为参数的入口接收的是 <code>ViewGroup.LayoutParams</code> 通过其属性进行赋值操作。</p>
+<p>回到 <code>Guideline</code> 查看 <code>setLayoutParams()</code> 方法做了什么。</p>
+<pre class=" language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setLayoutParams</span><span class="token punctuation">(</span>ViewGroup<span class="token punctuation">.</span>LayoutParams params<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>params <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">NullPointerException</span><span class="token punctuation">(</span><span class="token string">"Layout parameters cannot be null"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        mLayoutParams <span class="token operator">=</span> params<span class="token punctuation">;</span>
+        <span class="token function">resolveLayoutParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>mParent <span class="token keyword">instanceof</span> <span class="token class-name">ViewGroup</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+             <span class="token punctuation">(</span><span class="token punctuation">(</span>ViewGroup<span class="token punctuation">)</span> mParent<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">onSetLayoutParams</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> params<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">requestLayout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<p>在该方法里面分别调用了 <code>requestLayout()</code>，因为 ViewGroup 中包含子 View 所以要调用 onSetLayoutParams() 并让每个子 View 重新绘制。</p>
+<p>以上简短的分析可以看出，当屏幕的高度发生变化会让其重新进行绘制，那这个时候传入的所有比例参数也是按照当前高度进行计算，会导致所有约束关系不是最初想要的约束位置。<br>这个约束我觉得比较适合界面变化不是很大的地方。</p>
 
             </div>
             <hr/>
@@ -714,7 +601,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://spielberggao.com/linkedlist/">http://spielberggao.com/linkedlist/</a>
+                    <a href="http://spielberggao.com/guideline/">http://spielberggao.com/guideline/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -752,8 +639,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Java/">
-                                    <span class="chip bg-color">Java</span>
+                                <a href="/tags/%E5%B8%83%E5%B1%80/">
+                                    <span class="chip bg-color">布局</span>
                                 </a>
                             
                         </div>
@@ -919,9 +806,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/guideline/">
                     <div class="card-image">
@@ -940,9 +828,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -955,6 +843,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -973,29 +862,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/arraylist/">
+                <a href="/linkedlist/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="ArrayList">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="LinkedList">
                         
-                        <span class="card-title">ArrayList</span>
+                        <span class="card-title">LinkedList</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ArrayList看看 ArrayList 在创建实例的时候做了哪些任务。以下的注释为个人翻译夹杂个人理解如有不准可以自行查看原文。
-
-    /**
-     * 用于空实例的共享空数组。
-     */
-    private stat
+                            LinkedListLinkedList 同时实现了 List 接口和 Deque 接口，所以既可以将 LinkedList 当做一个有序容器，也可以将之看作一个队列（Queue），同时又可以看作一个栈（Stack）。虽然 LinkedLi
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-20
                             </span>
                         <span class="publish-author">
                             

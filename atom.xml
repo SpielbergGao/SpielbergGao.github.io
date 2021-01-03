@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://spielberggao.com/"/>
-  <updated>2020-03-20T05:02:07.979Z</updated>
+  <updated>2021-01-03T14:44:04.228Z</updated>
   <id>http://spielberggao.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Guideline</title>
+    <link href="http://spielberggao.com/guideline/"/>
+    <id>http://spielberggao.com/guideline/</id>
+    <published>2021-01-03T08:11:33.000Z</published>
+    <updated>2021-01-03T14:44:04.228Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;code&gt;Guideline&lt;/code&gt; 在日常使用可以作为一个基准线通过设置方向及比例来调整这条基准线所在的位置，其他控件以这条基准线来作为约束点。&lt;/p&gt;
+&lt;p&gt;在使用中发现 &lt;code&gt;Guideline&lt;/code&gt;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://spielberggao.com/categories/Android/"/>
+    
+    
+      <category term="布局" scheme="http://spielberggao.com/tags/%E5%B8%83%E5%B1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>LinkedList</title>
